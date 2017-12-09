@@ -6,7 +6,6 @@
 #include <unistd.h>
 
 
-typedef int chode;	
 
 typedef struct Node{
 	char id[10];
@@ -63,7 +62,7 @@ bool remove_node(char *id_desc){
 	else if (strcmp(node_root -> id , id_desc) && node_root -> ref == NULL ){
 		printf("Root Node does not match and its the only Node in the chain\n");
 		return false;
-	
+	}	
 	else if(strcmp(node_root -> id, id_desc) == 0 && node_root -> ref != NULL){
 		printf("Root node is to be removed and is the first one on the chain\n");
 		root = node_ref;
@@ -133,23 +132,37 @@ void iterate_Nodes(){
 int main(){
 	
 
+	printf("in the midnight hour she asked more more more");
 	printf("Im all alone\n");
- 
-	char mem = 'T';
-	char *ch;
-	scanf("%c", &ch);
-//	ch = (char *) mem;
-
-	while(*ch == 'T'){
-		printf("DIP DIP LITTLE DIP\n");
-		sleep(1);
-		printf("SHA SHA SHA NANANAAN\n");
-	}
-
-
+	FILE *fp;
 	
+	fp = fopen("./testFile.txt","r");
+	printf("file pointer address%x\n" , (int) &fp);
+	printf("dereference pointer%s\n",  fp);
 
-	printf("See it %c\n", ch );
+	printf("slowly but surely\n");		
+	/*if( fp == NULL){
+		fclose(fp);
+		printf("Dont fuck with me!!");
+		printf("ERROR ERROR IO ISSYE\n");
+		fprintf(stderr, "Cant open file!!!!");
+		return 0;
+	}else{
+		printf("File was found");
+	}
+	*/
+	/* Lesson fscanf wont work with if the char pointer
+	 * Has not been allocated any memory explicitely"
+	 */
+
+	char code[8];
+	char *txt = malloc(sizeof(char)*5);
+	char *fromTxt;
+	int i;
+	for(i = 0 ; fscanf(fp, "%s", txt) != EOF; i++ ){
+		printf("%d : %s\n", i, txt);
+	}
+	fclose(fp);
 }
 
 
