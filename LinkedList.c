@@ -111,7 +111,7 @@ bool findNode(char *id_desc){
 	return false;
 }
 
-void iterate_Nodes(){
+void iterate_nodes(){
 
 	if(root == NULL){
 		printf("Nothing to iterate over\n");
@@ -132,35 +132,29 @@ void iterate_Nodes(){
 int main(){
 	
 
-	printf("in the midnight hour she asked more more more");
-	printf("Im all alone\n");
 	FILE *fp;
 	
 	fp = fopen("./testFile.txt","r");
-	printf("file pointer address%x\n" , (int) &fp);
-	printf("dereference pointer%s\n",  fp);
-
-	printf("slowly but surely\n");		
-	/*if( fp == NULL){
-		fclose(fp);
-		printf("Dont fuck with me!!");
-		printf("ERROR ERROR IO ISSYE\n");
-		fprintf(stderr, "Cant open file!!!!");
-		return 0;
-	}else{
-		printf("File was found");
-	}
-	*/
 	/* Lesson fscanf wont work with if the char pointer
 	 * Has not been allocated any memory explicitely"
 	 */
 
 	char code[8];
 	char *txt = malloc(sizeof(char)*5);
+	char *info = malloc(sizeof(char)*5);
 	char *fromTxt;
 	int i;
-	for(i = 0 ; fscanf(fp, "%s", txt) != EOF; i++ ){
-		printf("%d : %s\n", i, txt);
+	for(i = 0 ; fscanf(fp, "%s %s", txt,info) != EOF; i++ ){
+		printf("%d : %s,%s\n", i, txt,info);
+		if(strcmp(txt,"a") == 0){
+			add_node(info);
+		}
+		else if(strcmp( txt,"r") == 0){
+			remove_node(info);
+		}
+		else if(strcmp(txt,"i") ==0){
+			iterate_nodes();
+		}
 	}
 	fclose(fp);
 }
