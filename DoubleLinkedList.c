@@ -44,14 +44,110 @@ void add_node(char *id_desc){
 
 }
 
-/*bool remove_node(char *id_desc){
+bool remove_node(char *id_desc){
 
 	//If Node does not exist
 	//why bother trying to remove it
-	if(root == NULL){
+	if(root_header == NULL){
 		return false;
 	}
 
+	//remove corner case for only one node in the list
+	if(strcmp(root_header -> id, id_desc) == 0 && root_header == root_trailer){
+	 	//There is only one entry in the chain
+	 	root_header = NULL;
+	 	root_trailer = NULL;
+	 	return true;
+	}
+
+	//remove corner case that the last node is being removed
+	if(strcmp(root_trailer -> id, id_desc) == 0 ){
+		//assumption that root_trailer always has a Prev pointer to
+		// Null pointer 
+
+		//Find the root trailers Next Reference Node and make that the
+		// new root trailer node
+		root_trailer = root_trailer -> nextRef; 
+
+		//now the next block is the trailer we must free the memory
+		// from the previous node that was the Node
+		free(root_trailer -> prevRef);
+
+		//now that we took care of a potentional memory leak 
+		//we move onto assigned the prev of this root trailer
+		//to be null
+		root_trailer -> prevRef = NULL;
+
+		return true;
+	}
+
+
+	//remove corner case that the header node is being removed
+	if(strcmp( root_header -> id, id_desc) == 0 ){
+		//assumption that root_trailer always has a Prev pointer to
+		// Null pointer 
+
+		//Find the header trailers prev Reference Node and make that the
+		// new root geader node
+		root_header = root_header -> prevRef; 
+
+		//now the next block is the trailer we must free the memory
+		// from the previous node that was the Node
+		free(root_header -> nextRef);
+
+		//now that we took care of a potentional memory leak 
+		//we move onto assigned the next of this root header
+		//to be null
+		root_header -> nextRef = NULL;
+
+		return true;
+	}
+
+	//now we must iterate through chain until we find the node we need
+	//take a node that we need
+
+	Node *iterate;
+	Node *prevIterate;
+	Node *nextIterate;
+
+	//we can work foward even though we can go back and forth
+	// MY LIST MY RULES!!!!!!!!!!!!!!!!!
+
+	iterate = root_header -> prevRef;
+
+	while( iterate != NULL){
+		
+		prevIterate = iterate -> prevRef;
+		nextIterate = iterate -> nextRef;
+
+		if(strcmp(iterate -> id, id_desc) == 0){
+			prevIterate -> nextRef = nextIterate;
+			nextIterate -> prevRef = prevIterate;
+			free(iterate);
+			return true;
+		}
+
+		iterate = iterate -> prevRef;
+	}
+
+
+
+
+	return false;
+}
+
+	/*
+
+	if(strcmp(root_trailer -> id, id_desc) == 0 ){
+		//assumption that root_trailer always has a Prev pointer to
+		// Null pointer 
+
+		//The next block upwards in 
+		root_trailer = root_trailer -> nextRef; 
+
+	}
+
+	//Check to see if the trailer node contains the removed key word idn
 	Node *node_root;
 	Node *node_ref;
 
@@ -96,7 +192,8 @@ void add_node(char *id_desc){
 
 	return false;
 
-}*/
+}
+*/
 
 bool findNode(char *id_desc){
 
@@ -155,12 +252,54 @@ void iterateBack_Nodes(){
 int main(){
 	
 	add_node("tacitus");
-	add_node("Livy");
-	add_node("Horace");
+//	add_node("Livy");
+//	add_node("Horace");
+	iterate_Nodes();
+//	iterateBack_Nodes();!
+	printf("What is the result : %d \n", remove_node("tacitus"));
+
+	
+ 	iterate_Nodes();
+
+ 	add_node("Livy");
+ 	add_node("Horace");
+	add_node("tacitus");
+
+ 	iterate_Nodes();
+ 	iterateBack_Nodes();
+
+	printf("What is the result : %d \n", remove_node("Livy"));
+
 	iterate_Nodes();
 	iterateBack_Nodes();
-	
- 
+
+	add_node("Suetonius");
+	add_node("pickle");
+	add_node("carrit");
+	add_node("Plato");
+
+	 	
+	iterate_Nodes();
+	iterateBack_Nodes();
+
+/*
+	printf("What is the result : %d \n", remove_node("Plato"));
+
+
+ 	iterate_Nodes();
+	iterateBack_Nodes();
+*/
+
+	printf("What is the result : %d \n", remove_node("carrit"));
+
+ 	iterate_Nodes();
+	iterateBack_Nodes();
+
+	printf("What is the result : %d \n", remove_node("tacitus"));
+
+ 	iterate_Nodes();
+	iterateBack_Nodes();
+
 
 }
 
