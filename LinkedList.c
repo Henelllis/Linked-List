@@ -137,17 +137,13 @@ int main(){
 	char mem = 'T';
 	char *ch;
 	scanf("%c", &ch);
-//	ch = (char *) mem;
 	while(true){
-	//while(*ch == 'T'){
 		scanf("%c", &ch);
-	//	printf("DIP DIP LITTLE DIP\n");
 		if(*ch == 'Q' || *ch =='q'){
 			printf("Quiting process, BYEEE\n");
 			return 1;
 		}
-	//	sleep(1);
-	//	printf("SHA SHA SHA NANANAAN\n");
+
 	}
 
 
