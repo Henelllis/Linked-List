@@ -4,8 +4,12 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include <unistd.h>
+#include "Linked_list.h"
 
-
+/*typedef struct Linked_List{
+	struct Node *header;
+	struct Node *trailer;
+} Linked_List;*/
 
 typedef struct Node{
 	char id[10];
@@ -13,11 +17,16 @@ typedef struct Node{
 	struct Node *prevRef;
 } Node;
 
+
+/* WE must remove the global vars
+	as this muddles the waters 
+	with independent variables */
 Node *root_header;
 Node *root_trailer;
 
 void init(char *id_desc){
 	root_header = malloc(sizeof(Node));
+
 	strcpy( root_header -> id , id_desc);
 	root_header -> nextRef = NULL;
 	root_header -> prevRef = NULL;
@@ -136,64 +145,6 @@ bool remove_node(char *id_desc){
 	return false;
 }
 
-	/*
-
-	if(strcmp(root_trailer -> id, id_desc) == 0 ){
-		//assumption that root_trailer always has a Prev pointer to
-		// Null pointer 
-
-		//The next block upwards in 
-		root_trailer = root_trailer -> nextRef; 
-
-	}
-
-	//Check to see if the trailer node contains the removed key word idn
-	Node *node_root;
-	Node *node_ref;
-
-	node_root = root;
-	node_ref = node_root -> ref;
-
-	if(strcmp(node_root -> id, id_desc) == 0 && node_root -> ref == NULL){
-		printf("Root node is to be removed and its the only node in the chain\n");
-		root = NULL;
-		free(root);
-		return true;
-	}
-	else if (strcmp(node_root -> id , id_desc) && node_root -> ref == NULL ){
-		printf("Root Node does not match and its the only Node in the chain\n");
-		return false;
-	
-	else if(strcmp(node_root -> id, id_desc) == 0 && node_root -> ref != NULL){
-		printf("Root node is to be removed and is the first one on the chain\n");
-		root = node_ref;
-		return true;
-	}
-
-	while(node_root -> ref != NULL){
-
-		if(strcmp(node_ref -> id , id_desc) == 0){
-			
-			Node *tmp;
-			tmp = node_root -> ref -> ref;
-			free(node_root -> ref);
-			//node_ref = NULL;
-
-			node_root -> ref = tmp;
-
-			return true; 
-		}
-		else{
-			node_root = node_root -> ref;
-			node_ref = node_root -> ref;
-		}
-
-	}
-
-	return false;
-
-}
-*/
 
 bool findNode(char *id_desc){
 
@@ -249,7 +200,7 @@ void iterateBack_Nodes(){
 }
 
 
-int main(){
+/*int main(){
 	
 	add_node("tacitus");
 //	add_node("Livy");
@@ -288,7 +239,7 @@ int main(){
 
  	iterate_Nodes();
 	iterateBack_Nodes();
-*/
+
 
 	printf("What is the result : %d \n", remove_node("carrit"));
 
@@ -301,6 +252,6 @@ int main(){
 	iterateBack_Nodes();
 
 
-}
+}*/
 
 
