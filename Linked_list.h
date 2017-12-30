@@ -21,5 +21,10 @@ void iterate_Nodes();
 
 void iterateBack_Nodes();
 
+void save_linked_list(Linked_List *ll);
+
+void set_linked_list(Linked_List *ll);
+
+void reset_linked_list();
 
 #endif

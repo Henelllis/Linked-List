@@ -199,59 +199,21 @@ void iterateBack_Nodes(){
 	}
 }
 
-
-/*int main(){
-	
-	add_node("tacitus");
-//	add_node("Livy");
-//	add_node("Horace");
-	iterate_Nodes();
-//	iterateBack_Nodes();!
-	printf("What is the result : %d \n", remove_node("tacitus"));
-
-	
- 	iterate_Nodes();
-
- 	add_node("Livy");
- 	add_node("Horace");
-	add_node("tacitus");
-
- 	iterate_Nodes();
- 	iterateBack_Nodes();
-
-	printf("What is the result : %d \n", remove_node("Livy"));
-
-	iterate_Nodes();
-	iterateBack_Nodes();
-
-	add_node("Suetonius");
-	add_node("pickle");
-	add_node("carrit");
-	add_node("Plato");
-
-	 	
-	iterate_Nodes();
-	iterateBack_Nodes();
-
-/*
-	printf("What is the result : %d \n", remove_node("Plato"));
+void save_linked_list(Linked_List *ll){
+	ll -> header = root_header;
+	ll -> trailer = root_trailer;
+}
 
 
- 	iterate_Nodes();
-	iterateBack_Nodes();
+void set_linked_list(Linked_List *ll){
+	 root_header = ll -> header;
+	 root_trailer = ll -> trailer ;
+}
 
+void reset_linked_list(){
+	 root_header = NULL;
+	 root_trailer = NULL;
+}
 
-	printf("What is the result : %d \n", remove_node("carrit"));
-
- 	iterate_Nodes();
-	iterateBack_Nodes();
-
-	printf("What is the result : %d \n", remove_node("tacitus"));
-
- 	iterate_Nodes();
-	iterateBack_Nodes();
-
-
-}*/
 
 
